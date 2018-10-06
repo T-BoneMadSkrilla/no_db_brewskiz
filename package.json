@@ -1,3 +1,4 @@
+
 {
   "name": "brewski_no_db",
   "version": "0.1.0",
@@ -18,6 +19,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+
+  "proxy": "http://localhost:3002",
+  
   "eslintConfig": {
     "extends": "react-app"
   },

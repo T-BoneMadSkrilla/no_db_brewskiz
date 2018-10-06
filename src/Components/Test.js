@@ -16,7 +16,7 @@ class Test extends Component {
            this.setState({brewery: res.data})
            console.log(res.data)
             // res.data.map()
-            // console.log(res.data[0])
+            // console.log(res.data)
             // this.setState({brewery: res.data});
     });
 }
@@ -27,14 +27,6 @@ class Test extends Component {
         console.log(brewery)
         return(
           <div>
-
-            {brewery.map( (e) => {
-                return <div>{e.name}</div>
-            })}
-
-            {brewery.map( (e) => {
-                return <div>{e.id}</div>
-            })}
 
           </div>  
         );
