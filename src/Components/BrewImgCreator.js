@@ -5,11 +5,23 @@ import "./BrewImgCreator.css";
 const BrewImgCreator = (props) => {
     return(
         <div className = 'BeerListItem'>
+        <div className ='boxAround'>
+            <div>
             <img 
             src={props.img}
             />
+            </div>
             <div>
-            <button onClick={props.handleClick}>{props.button}</button>
+              {props.fav && (<button onClick={props.fav}>Add</button>)}
+            </div>
+
+            <div>
+            {props.handleDelete && (<button onClick={()=>props.handleDelete(props.x)}>Delete</button>)}
+            </div>
+
+            <div>{props.name}</div>
+            <div>{props.city}</div>
+            <div>{props.state}</div>
             </div>
         </div>
     );

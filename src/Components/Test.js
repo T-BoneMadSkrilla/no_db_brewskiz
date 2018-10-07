@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Test.css';
 import BrewImgCreator from './BrewImgCreator.js';
+import Review from './Review.js';
 
 class Test extends Component {
     constructor(){
@@ -26,41 +27,75 @@ class Test extends Component {
     });
 }
     
-    handleAdd = id => {
-        const { brewery, favs}= this.state
-        let temp = favs.concat(brewery.slice(id, id +1))
-        this.setState({favs : temp})
-    }
+    handleAdd = e => {
+            axios
+            .post('http://localhost:3002/api/breweries',e).then( res =>{
+                 this.setState({favs: res.data})
+            })
+        }
+    
 
 
     handleDelete = id => {
-        let temp = this.state.favs.slice(0,10);
-        temp.splice(id,1);
-        
-        this.setState({favs : temp})
+        axios
+        .delete('http://localhost:3002/api/breweries/:x')
+        .then(res => this.setState({favs: res.data}))
     }
 
-    render(){
-        const {brewery} = this.state
+    render() {
+        const {brewery, favs} = this.state
 
         console.log(brewery)
 
-        const map = brewery.slice(0,10).map((e,i)=>{
-            return (
+        const display = brewery.map((e,i)=>{
+            return (<div>
                 <BrewImgCreator
                 key={i}
                 img={e.img}
-                handleCLick={e=> this.handleAdd(i)}
-                button={'Add'}
+                name={e.name}
+                city={e.city}
+                state={e.state}
+                fav={()=> this.handleAdd(e)}
+              
                 />
+                
+                </div>
             );
         });
 
+        const display2 = favs.map((e,i) => {
+            return (
+                <div>
+                    <BrewImgCreator
+                        key={i}
+                        img={e.img}
+                        name={e.name}
+                        city={e.city}
+                        state={e.state}
+                        handleDelete={this.handleDelete}
+                       
+                        />
+                </div>
+            );
+        });
 
+//below is what is returned - don't get confused with the functions above, Tyler
         return(
-         <div className="App">
-            
-            {map}
+        <div>
+
+            <div>
+            {display}
+            </div>
+
+            <h3>I wanna try these mugs out</h3>
+
+            <div>
+            {display2}
+            </div>
+
+            <div>
+                <Review/>
+            </div>
 
          </div>
         );

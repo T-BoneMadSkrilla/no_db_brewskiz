@@ -1,13 +1,26 @@
 .BeerListItem{
-    margin: 1%;
-    position: center;
+    margin: 5%;
     display: flex;
-    flex-direction: row;
-    height: 50vh;
-    width: 50vh;
+    flex-direction: column;
+    height: 40vh;
+    width: 30%; 
+    align-items: center;
+    flex-wrap: flex;
+    background: black;
 }
 
-.BeerListItem -img{
-    width: auto;
-    height: auto;
+.boxAround{
+    background: grey;
+    width: 200px;
+    height: 400px;
+    display: inline-block;
+    flex: 1 0 21%; 
+    margin: 5px;
+    box-sizing: border-box;
+    
+}
+
+.BeerListItem img{
+    width: 150px;
+    height: 150px;
 }

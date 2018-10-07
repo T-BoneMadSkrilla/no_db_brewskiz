@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  background: rgba(255, 0, 0, 0.479);
+  align-items: center;
+  align-content: center;
 }
 
 .App-logo {
@@ -7,7 +10,7 @@
   height: 40vmin;
 }
 
-.App-header {
+.AppTop {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
