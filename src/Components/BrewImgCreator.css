@@ -1,0 +1,13 @@
+.BeerListItem{
+    margin: 1%;
+    position: center;
+    display: flex;
+    flex-direction: row;
+    height: 50vh;
+    width: 50vh;
+}
+
+.BeerListItem -img{
+    width: auto;
+    height: auto;
+}

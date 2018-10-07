@@ -10,7 +10,15 @@ const port = 3002;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/api/breweries' , c.gettingData)
+const url = "/api/breweries"
+
+app.get(url , c.gettingData);
+
+app.post(url, c.reviewing);
+
+app.delete(`${url}/:x`, c.deleteReview);
+
+app.put(`${url}/update`, c.update);
 
 app.listen(port, ()=> {console.log(`Server listening on port ${port}`); } );
 

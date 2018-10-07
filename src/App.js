@@ -7,8 +7,9 @@ class App extends Component {
     return (
       <div className="App">
       <h1> SUP BITCH </h1>
+      <div className = "parent">
        < Test />
-
+       </div>
       </div>
     );
   }

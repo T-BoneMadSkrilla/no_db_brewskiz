@@ -1,6 +1,8 @@
 const axios = require("axios");
 
 let books = [];
+let reviews = ["Leave your review here"];
+let updates = "";
 
 function gettingData (req, res, next){
     var brews = [];
@@ -106,8 +108,29 @@ function gettingData (req, res, next){
         });
 };
 
+
+function reviewing (req, res){
+    reviews.push(req.body.review);
+    res.status(200).json(reviews)
+}
+
+function deleteReview( req, res, next){
+    const x = req.params;
+    const reviewIndex = reviews.findIndex( b => b.req.params === req.params);
+    reviews.splice(reviewIndex, 1);
+    res.status(200).json(reviews)
+}
+
+function update(req, res, next){
+    updates = req.body.newInput;
+    res.status(200)(req.body)
+}
+
 module.exports = {
-    gettingData
+    gettingData,
+    reviewing,
+    deleteReview,
+    update
 }
 
 
