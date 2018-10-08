@@ -87,13 +87,13 @@ class Test extends Component {
                 <Title />
             </div>
 
-            <div className="BeerListItem-main-card">
+            <div className="Tim">
             {display}
             </div>
 
             <h3>I wanna try these mugs out</h3>
 
-            <div>
+            <div className="favsBox">
             {display2}
             </div>
 

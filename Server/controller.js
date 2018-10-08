@@ -43,9 +43,9 @@ function gettingData (req, res, next){
                     img = 
                     "http://www.1912brewing.com/wp-content/uploads/2017/07/1912-Growlers.jpg";
                 }
-                if(brew.name === "Bad Water Brewing ") {
+                if(brew.name === "Bad Water Brewing") {
                     img = 
-                    "https://pikfly.com/images/products/141/20984.jpg";
+                    "https://cdn.beermonthclub.com/media/catalog/product/cache/image/280x280/e9c3970ab036de70892d86c6d221abfe/b/a/bad-water-saison.jpg";
                 }
                 if(brew.name === "BJs Restaurant & Brewery - Chandler") {
                     img = 

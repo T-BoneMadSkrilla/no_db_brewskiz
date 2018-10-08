@@ -47,6 +47,7 @@ class Review extends Component{
         console.log(id,value)
         axios   
         .put(`http://localhost:3002/api/breweries/${id}`, {value}).then( res =>{
+            console.log(res.data)
              this.setState({review: res.data})
         })
     } //
@@ -62,7 +63,7 @@ class Review extends Component{
                 return (
                  <div key={index}>
 
-                 {value.update}
+                 { value.update}
                      <button onClick={()=>this.editReview(index, this.state.newInput)}>EDIT </button>
                      <input onChange={(e) => this.handleInput(e.target.value)}/>
                      {/* <button onClick={() => this.editReview(value.id, this.state.editReview)}>SUBMIT</button> */}
@@ -89,6 +90,7 @@ class Review extends Component{
         return(
 
             <div>
+                <div><h3>Leave a review</h3></div>
                 {map}
                     {/* <div>{this.state.newReview}</div> */}
                 {/* {this.state.review && (<button onClick={this.state.review}>Add</button>)} */}
