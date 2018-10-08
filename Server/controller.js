@@ -1,7 +1,10 @@
 const axios = require("axios");
 
 let favs = [];
-let updates = "";
+let updates = [];
+let updateId = 0;
+let review = [];
+let title = "";
 
 function gettingData (req, res, next){
     var brews = [];
@@ -121,15 +124,36 @@ function deleteReview( req, res, next){
 }
 
 function update(req, res, next){
-    updates = req.body.newInput;
-    res.status(200)(req.body)
+    updates.push({update: req.body.newInput, id: updateId});
+    updateId++
+    console.log(updates)
+    res.status(200).json(updates)
+}//this is actually the post
+
+function postReview(req,res, next){
+    console.log(req.body, req.params)
+    if (req.params.id !== typeof undefined){
+        updates.splice(req.params.id, 1, req.body.value)
+        // review = req.params.id;
+        console.log(updates)
+        return res.status(200).json(updates)
+    }
+    res.status(200).json(review)
+}//this is actually the put req.body needed
+
+function editTitle(req, res){
+    title = req.body.input;
+    console.log(title)
+    res.status(200).json(title)
 }
 
 module.exports = {
     gettingData,
     reviewing,
     deleteReview,
-    update
+    update,
+    postReview,
+    editTitle
 }
 
 

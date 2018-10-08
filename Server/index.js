@@ -18,7 +18,11 @@ app.post(url, c.reviewing);
 
 app.delete(`${url}/:x`, c.deleteReview);
 
-app.put(`${url}/update`, c.update);
+app.put(url, c.update)
+
+app.put(`${url}/:id`, c.postReview);
+
+app.put(`${url}/title`, c.editTitle)
 
 app.listen(port, ()=> {console.log(`Server listening on port ${port}`); } );
 

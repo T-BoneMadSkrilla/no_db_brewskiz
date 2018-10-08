@@ -6,16 +6,17 @@ class Review extends Component{
             super();
 
             this.state = {
-            review: "This site is great I love the functionality! - EftinkGmoney",
-            newReview: "",
+            review: [],
+            newReview: [],
             newInput: "",
-            editReview: false
+            editReview: "",
+            edit: false
         };
     }
 
     handleReview = () => {
         this.setState({
-            editReview: !this.state.editReview
+            edit: !this.state.edit
         })
     }
 
@@ -27,24 +28,75 @@ class Review extends Component{
 
     leaveReview = () => { 
         let {newInput} = this.state;
-            axios.put('http://localhost:3002/api/breweries/update', {newInput}).then( res => {
+            axios.put(`http://localhost:3002/api/breweries`, {newInput}).then( res => {
+                console.log(res.data)
                 this.setState({
-                    newReview: res.data,
-                    editReview: !this.state.editReview,
-                    newInput: ""
+                    newReview: res.data
+                    // editReview: !this.state.editReview,
+                    // newInput: res.data.newReview
                 })
             })
     }
+    //leaveReview is actually a post, I know it's confusing 
 
+    // e =>{
+    //     if (e.keyCode === 13){
+    //         let { input } = this.state;
+
+    editReview = (id, value) => {
+        console.log(id,value)
+        axios   
+        .put(`http://localhost:3002/api/breweries/${id}`, {value}).then( res =>{
+             this.setState({review: res.data})
+        })
+    } //
+
+    //create new function to change the edit review string. Then call the function on a submit button.
 
     render(){
+        // console.log(this.state.newReview)
+        //map this.state.newReview to style
+        console.log(this.state.newReview)
+
+       const map = this.state.newReview.map((value, index)=> {
+                return (
+                 <div key={index}>
+
+                 {value.update}
+                     <button onClick={()=>this.editReview(index, this.state.newInput)}>EDIT </button>
+                     <input onChange={(e) => this.handleInput(e.target.value)}/>
+                     {/* <button onClick={() => this.editReview(value.id, this.state.editReview)}>SUBMIT</button> */}
+                 </div> //change second
+                )
+       }) 
+
+    //    <div>
+//     <div>
+//     {!editTitle ? (<h1 onClick={this.handleTitle}>{newTitle ? newTitle : title}</h1>
+//     ) : (
+//         <div>
+//             <input 
+//              placeholder="Call it whatever you want, buddy"
+//              onChange={e => this.handleInput(e.target.value)}
+//              onKeyDown={this.Enter}
+//             />
+
+//         </div>
+//     )}
+//  </div>
+// </div>
+
         return(
+
             <div>
-                <h3>{this.state.newReview ? this.state.review : this.state.newInput}</h3>
+                {map}
+                    {/* <div>{this.state.newReview}</div> */}
+                {/* {this.state.review && (<button onClick={this.state.review}>Add</button>)} */}
+                {/* <h3>{this.state.newReview ? this.state.review : this.state.newInput}</h3> */}
                 <div>
                     <input onChange={e => this.handleInput(e.target.value)}/>
                     <button onClick={this.leaveReview}> {" "}Submit{" "} </button>
-                   {/* <div>{this.state.newReview}</div> */}
+                   <div>{this.state.review}</div> 
                 </div>
             </div>
         )

@@ -3,6 +3,7 @@ import axios from 'axios';
 import './Test.css';
 import BrewImgCreator from './BrewImgCreator.js';
 import Review from './Review.js';
+import Title from './Title.js';
 
 class Test extends Component {
     constructor(){
@@ -48,7 +49,7 @@ class Test extends Component {
         console.log(brewery)
 
         const display = brewery.map((e,i)=>{
-            return (<div>
+            return (<div className='t-bone'>
                 <BrewImgCreator
                 key={i}
                 img={e.img}
@@ -82,8 +83,11 @@ class Test extends Component {
 //below is what is returned - don't get confused with the functions above, Tyler
         return(
         <div>
-
             <div>
+                <Title />
+            </div>
+
+            <div className="BeerListItem-main-card">
             {display}
             </div>
 
